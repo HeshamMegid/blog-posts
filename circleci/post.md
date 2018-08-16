@@ -1,4 +1,4 @@
-# How We Automate Our Ios Workflow at Instabug Using Circleci
+# How We Automate Our iOs Workflow at Instabug Using Circleci
 
 At Instabug we build an SDK for mobile apps. Building an SDK often means that most tools created for automating tasks around development and deployment of iOS apps don't work for us, so we usually need to develop our own bespoke solutions.
 
