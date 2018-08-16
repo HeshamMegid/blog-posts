@@ -106,6 +106,24 @@ After running our unit tests, we run Danger, which is great tool to automate som
 3. Run [xcov](https://github.com/nakiostudio/xcov) to generate a report about our tests coverage, and post it as a comment on the pull request
 4. Ensure that all pull requests that modify any UI file run UI tests before merging the pull request.
 
+```ruby
+has_ui_changes = !git.modified_files.grep(/View Controllers/).empty? || !git.modified_files.grep(/Views/).empty?
+
+if !ENV['RUN_UI_TESTS'] && has_ui_changes
+	fail("UI has been changed but UI tests were not run. Please make sure to run them before merging the PR.")
+end
+
+# Make sure PR has a description.
+if github.pr_body.length < 3 && git.lines_of_code > 10
+	fail "Please provide a summary of the changes in the Pull Request description."
+end
+
+# Check if PR title has reference to a Jira issue.
+if !github.pr_title[/\[[a-zA-Z]*-[0-9]*\]/]
+	fail("Pull request should include Jira card number in the name. For example: [IBGProj-123]")
+end
+```
+
 Last steps of this job is to run our integration tests, which is just a test target with a similar configuration to our unit test targets.
 
 This job runs on every pull request, so we have to make sure it contains all the essential checks/tests, and that it also runs in a reasonable time. It currently runs in around 8 minutes, with the majority of the time going to making a clean build of the SDK for running tests.
