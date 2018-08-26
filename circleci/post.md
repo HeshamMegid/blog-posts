@@ -2,7 +2,7 @@
 
 At Instabug we build an SDK for mobile apps. Building an SDK often means that most tools created for automating tasks around development and deployment of iOS apps don't work for us, so we usually need to develop our own bespoke solutions.
 
-To increase our productivity and keep thing moving fast, we like to automate things. One crucial component of automating many parts of our workflow is continuous integration.
+To increase our productivity and keep things moving fast, we like to automate our tasks. One crucial component of automating many parts of our workflow is continuous integration.
 
 This post goes through what our workflow is and how we automate it using CircleCI.
 
@@ -45,7 +45,7 @@ Our workflow has 4 jobs:
 
 1. Running unit tests, integration tests and Danger
 2. Running UI tests and static analyzer
-3. Generating binary
+3. Generating a binary
 4. Releasing the SDK
 
 Let's go through each one in details.
@@ -99,12 +99,12 @@ First, we install all gems used by our project, like [Danger](http://danger.syst
 
 We then run our unit tests. Due to how our project is structured, we have around 15 framework targets, with a separate test target for each. To run all our unit tests at once, we have an `AllUnitTests` scheme that runs all test targets.
 
-After running our unit tests, we run Danger, which is great tool to automate some of the chores around code reviews. Here's what we use it for right now.
+After running our unit tests, we run Danger, which is a great tool to automate some of the chores around code reviews. Here's what we use it for right now.
 
-1. Enforce having has a description and a link to a Jira issue for all pull requests
-2. Ensure that all pull requests that add new user-facing strings add localized versions of those strings.
+1. Enforce having a description and a link to a Jira issue for all pull requests
+2. Ensure that all pull requests that add new user-facing strings also add the localized versions of those strings in all supported languages.
 3. Run [xcov](https://github.com/nakiostudio/xcov) to generate a report about our tests coverage, and post it as a comment on the pull request
-4. Ensure that all pull requests that modify any UI file run UI tests before merging the pull request.
+4. Ensure that all pull requests that modify any UI file, run UI tests before merging the pull request.
 
 ```ruby
 has_ui_changes = !git.modified_files.grep(/View Controllers/).empty? || !git.modified_files.grep(/Views/).empty?
@@ -124,7 +124,7 @@ if !github.pr_title[/\[[a-zA-Z]*-[0-9]*\]/]
 end
 ```
 
-Last steps of this job is to run our integration tests, which is just a test target with a similar configuration to our unit test targets.
+The last step of this job is to run our integration tests, which is just a test target with a similar configuration to our unit test targets.
 
 This job runs on every pull request, so we have to make sure it contains all the essential checks/tests, and that it also runs in a reasonable time. It currently runs in around 8 minutes, with the majority of the time going to making a clean build of the SDK for running tests.
 
@@ -178,7 +178,7 @@ This job is very similar to what we do in the first job, but it instead runs a U
 
 This job only runs on master, and fix/release branches, so we're okay with it taking a bit longer to run. It currently finishes in around 40 minutes and runs in parallel with the first job. It can also be run on demand on any pull request regardless of its branch by mentioning a simple GitHub bot we wrote that uses the CircleCI API to trigger a specific job.
 
-## Generating Binary
+## Generating a Binary
 
 ```yaml
 generate-binary: 
