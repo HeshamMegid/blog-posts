@@ -14,7 +14,7 @@ To help reduce flakiness and the eventual configuration/environmental drift, we 
 
 Unfortunately Docker doesn’t support macOS containers, so we decided to use [Veertu’s Anka](https://veertu.com/). Anka is a virtualization technology for macOS build on top of [Hypervisor.framework](https://developer.apple.com/documentation/hypervisor) that offers a container-like interface, and offers a simple command line interface to spin up and manage virtual machines.
 
-The next challenge we faced was picking a controller to manage our builds. We decided to stay away from Jenkins since it’s too fiddly to setup, and go for something more modern. 
+The next challenge we faced was picking a frontend to schedule and manage our builds. We decided to stay away from Jenkins since it’s too fiddly to setup, and go for something more modern. 
 
 After trying different tools, [Buildkite](https://buildkite.com/) seemed to best fit our needs. Buildkite offers a simple, modern UI with the ability to easily create sophisticated pipelines.
 
@@ -30,7 +30,12 @@ Once the virtual machine is created, it’s added to Anka’s Registry, which ac
 
 With our virtual machine images ready and the Buildkite agent running on a cluster of local Mac minis, the next step was to figure out how to provision a virtual machine for each build, and run the pipeline inside it. To do this, we used [Chef’s Buildkite plugin for Anka](https://github.com/chef/anka-buildkite-plugin). With Buildkite’s excellent support for plugins, we can simply set a step in our build pipelines to run using this plugin. 
 
-The plugin will automatically create a clone of the specific virtual machine image and run the pipeline step inside it. It will also manage deleting the cloned virtual machines when pipelines are cancelled, fail or succeed.
+The plugin will automatically do the following:
+1. Create a clone of the specific virtual machine image.
+2. Boot the virtual machine almost instantly, thanks to Anka's virtualization technology. 
+3. Mount the checked out source code from the host into the virtual machine.
+4. Run the pipeline step inside the virtual machine
+5. Delete the cloned virtual machine when pipelines succeeds, fails, or gets cancelled.
 
 ```
                               ┌─────────────────────────────────────┐
@@ -69,7 +74,7 @@ The plugin will automatically create a clone of the specific virtual machine ima
                                          └───────────────┘
 ```
 
-With this setup, we can run multiple pipeline steps simultaneously in separate virtual machines across several host machines.
+With this setup, we can run multiple pipeline steps simultaneously in separate virtual machines across several host machines. Since each machine only needs to run the BuildKite agent and the Anka command line interface, machines can be in different locations to make our setup more resilient to outages.
 
 ## Scalability
 
