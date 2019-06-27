@@ -44,9 +44,9 @@ The plugin will automatically do the following:
                               │                                     │                ┌────────────────────────────┐
                               │                                     │                │                    Current │
                               │    .─────.    .─────.    .─────.    │                │                     builds │
-┌───────────┐                 │   ;  Mac  :  ;  Mac  :  ;  Mac  :   │                │                            │
-│           │                 │   : mini  ;  : mini  ;  : mini  ;   │                │ ┌────┐ ┌────┐              │
-│   Anka    │                 │    ╲     ╱    ╲     ╱    ╲     ╱    │                │ │VM 1│ │VM 3│              │
+┌───────────┐                 │   ;  Mac  :  ;  Mac  :  ;  Mac  :   │  Run pipeline  │                            │
+│           │  Push and pull  │   : mini  ;  : mini  ;  : mini  ;   │  steps inside  │ ┌────┐ ┌────┐              │
+│   Anka    │     images      │    ╲     ╱    ╲     ╱    ╲     ╱    │      VMs       │ │VM 1│ │VM 3│              │
 │ Registry  ◀─────────────────▶     `───'      `───'      `───'     ◀────────────────▶ └────┘ └────┘              │
 │           │                 │                                     │                │ ┌────┐ ┌────┐              │
 │           │                 │         .─────.    .─────.          │                │ │VM 2│ │VM 4│              │
@@ -60,8 +60,8 @@ The plugin will automatically do the following:
                                                  │
                                                  │
                                                  │
-                                                 │
-                                                 │
+                                                 │ Manage pipelines
+                                                 │ on host machines
                                                  │
                                                  │
                                                  │
