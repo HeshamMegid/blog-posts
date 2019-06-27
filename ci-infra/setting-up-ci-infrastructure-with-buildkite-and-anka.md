@@ -83,3 +83,5 @@ Scaling this infrastructure is as simple as adding new machines to the cluster o
 ## Conclusion
 
 Using Anka and Buildkite, we created a CI infrastructure that’s easily scalable, reduces flakiness/environmental drift, and gives us lots of flexibility to run build pipelines that take hours to complete, or pipelines that require access to physical devices.
+
+While it took a significant time investment to build our own CI infrastructure, we think that the greater control and flexibility it gives us is well worth the effort.
