@@ -13,12 +13,14 @@ Unfortunately Docker doesn’t support macOS containers, so we decided to use [V
 
 The next challenge we faced was picking a controller to manage our builds. We decided to stay away from Jenkins since it’s too fiddly to setup, and go for something more modern. 
 
-After trying different tools, Buildkite seemed to best fit our needs. Buildkite offers a simple, modern UI with the ability to easily create sophisticated pipelines.
+After trying different tools, [Buildkite](https://buildkite.com/) seemed to best fit our needs. Buildkite offers a simple, modern UI with the ability to easily create sophisticated pipelines.
 
 ## How It All Works
 The first step we needed to do was to create an Anka VM that we can clone for each build. To make that process easier, we used HashiCorp’s [Packer](https://www.packer.io/). 
 
-Packer lets us automate the VM creation process out of [a bunch of confirmation files](https://github.com/HeshamMegid/anka-packer-images).  Using Packer, we can create an image that has Xcode, fastlane, CocoaPods, and all the other essential tools for our build jobs. Since the whole process is based on configuration files, it can be source-controlled and versioned.
+Packer lets us automate the VM creation process out of [a bunch of confirmation files](https://github.com/HeshamMegid/anka-packer-images). Using Packer, we can create an image that has Xcode, fastlane, CocoaPods, and all the other essential tools for our build jobs while only taking the macOS installer downloaded from the App Store as input. 
+
+The images are built as separate layers on top of each other. The first layer only installs Ruby, Homebrew and a few other basics, while the layer on top of it installs Xcode, making it much easier and faster to create a new image that has a new version of Xcode, based on the first layer. Also, since the whole process is based on configuration files, it can be source-controlled and versioned.
 
 Once the VM is created, it’s added to Anka’s Registry, which acts as a central repository of versioned VM images. All build agents can pull images from this registry and clone them to run build pipelines. 
 
