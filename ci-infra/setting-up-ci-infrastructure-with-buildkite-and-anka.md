@@ -1,13 +1,14 @@
-# Setting Up CI Infrastructure with Buildkite and Anka
-While we’re big fans of CircleCI and [use it for continuous integration](https://instabug.com/blog/how-we-automate-our-ios-workflow-at-instabug-using-circleci/) for both our iOS and Android SDKs, we recently needed to setup our own CI infrastructure. In this post, I’ll walk you through why and how we did it.
+# Setting Up iOS CI Infrastructure with Buildkite and Anka
+While we’re big fans of CircleCI and [use it for continuous integration](https://instabug.com/blog/how-we-automate-our-ios-workflow-at-instabug-using-circleci/) for both our iOS and Android SDKs, but as our team grows, our needs have changed. As a result, we decided to setup our own CI infrastructure. In this post, I’ll walk you through what motivated us to do it and that tools we used.
 
-## Why
+## Current Challenges
 While CircleCI works great for us, we wanted to run our UI tests on physical devices instead of just simulators. This would help us find obscure UI and performance issues. This is currently not possible on CircleCI, and while there are many services that lets you do this, we preferred to utilize the extensive set of testing device we already had at our office.
 
-In addition to that, we have a homegrown stress testing tool that runs our SDK continuously for many hours. While this is possible on CircleCI, it would be very costly.
+In addition to that, we have an internal tool we have developed to do a combination of functional and stress testing on the SDK. This tools does nightly runs that take many hours to complete, and while running it on CircleCI is possible, it wouldn't be cost effective.
 
 ## Challenges
-We decided from the get-go that builds need to run on an isolated environment, like Docker containers, rather than running them directly on the host machine. This would help us reduce flakiness and the eventual configuration/environmental drift.
+
+To help reduce flakiness and the eventual configuration/environmental drift, we decided from the get-go that builds need to run in an isolated environment, like Docker containers, rather than running them directly on the host machine. 
 
 Unfortunately Docker doesn’t support macOS containers, so we decided to use [Veertu’s Anka](https://veertu.com/). Anka is a virtualization technology for macOS that offers a container-like interface, and makes it possible to manage CI infrastructure as code.
 
