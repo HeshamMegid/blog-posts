@@ -1,6 +1,6 @@
-# Setting Up iOS CI Infrastructure with Buildkite and Anka
+# iOS CI Infrastructure with Buildkite and Anka at Instabug
 
-While we’re big fans of CircleCI and [use it for continuous integration](https://instabug.com/blog/how-we-automate-our-ios-workflow-at-instabug-using-circleci/) for both our iOS and Android SDKs, but as our team grows, our needs have changed. As a result, we decided to setup our own CI infrastructure. In this post, I’ll walk you through what motivated us to do it and that tools we used.
+We, at [Instabug](https://instabug.com), are big fans of CircleCI and [use it for continuous integration](https://instabug.com/blog/how-we-automate-our-ios-workflow-at-instabug-using-circleci/) for both our iOS and Android SDKs as it worked great for our needs. Those needs however have recently changed quite a bit, and as a result, we decided to setup our own CI infrastructure. In this post, I’ll walk you through what motivated us to do it and that tools we used.
 
 ## Current Challenges
 
