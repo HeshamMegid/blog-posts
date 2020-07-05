@@ -48,4 +48,4 @@ I think there’s a lot of work that needs to be done for MetricKit crash report
 
 I’m excited to see what other features Apple adds to MetricKit next year, and if they are accompanied by any policy/App Store review changes designed to push developers to use MetricKit instead of alternative solutions.
 
-*Disclaimer: I work for Instabug and we currently offer a crash reporting SDK. My opinions might be biased due to that.*
+**Disclaimer: I work for Instabug and we currently offer a crash reporting SDK. My opinions might be biased due to that.**
