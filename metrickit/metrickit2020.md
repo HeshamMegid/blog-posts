@@ -7,7 +7,7 @@ Why is this interesting? Because crash reports on iOS right now can be collected
 
 This blog post is an attempt to answer some of the questions that I think are going to be common for anyone looking at MetricKit and comparing it to any of the current crash reporters.
 
-Before getting started, I recommend reading [this blog post](https://www.chimehq.com/blog/metrickit-crash-reporting)by  [Matt Massicotte](https://twitter.com/mattie) first. It talks about a lot of the implementation details of crash reporting in MetricKit. Here are some of the key points Matt made that are relevant to this blog post.
+Before getting started, I recommend reading [this blog post](https://www.chimehq.com/blog/metrickit-crash-reporting) by [Matt Massicotte](https://twitter.com/mattie) first. It talks about a lot of the implementation details of crash reporting in MetricKit. Here are some of the key points Matt made that are relevant to this blog post.
 
 * In-process crash reporting, which is how all current commercial and open-source crash reporters are implemented, is messy and error-prone.
 * MetricKit offers raw diagnostics data. It’s up to you to do any analysis on that data.
