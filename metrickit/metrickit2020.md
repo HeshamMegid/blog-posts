@@ -26,7 +26,7 @@ Apple doesn’t specifically say this in the documentation or any of the WWDC vi
 ### Is this the end of in-process crash reporting?
 I highly doubt it. MetricKit is very promising, but it also currently has a few limitations that I think are going to curb its adoption.
 
-MetricKit will only collect data for users that have opted-in to share Diagnostics & Usage data with developers. This is great for privacy, yet it also means that you will not be getting the full picture of how a certain crash impacts your users since you only have a (supposedly small) percentage of the diagnostics reports. More obscure crashes affecting a small percentage of your user base may go completely unnoticed.
+MetricKit will only collect data for users that have opted-in to share diagnostics & usage data with developers. This is great for privacy, yet it also means that you will not be getting the full picture of how a certain crash impacts your users since you only have a (supposedly small) percentage of the diagnostics reports. More obscure crashes affecting a small percentage of your user base may go completely unnoticed.
 
 Another limitation with MetricKit is that you can request diagnostics data about the previous 24 hours only once per day. This means that [sudden spikes in crashes](https://www.theverge.com/2020/5/7/21250689/facebook-sdk-bug-ios-app-crash-apple-spotify-venmo-tiktok-tinder) may go unnoticed for a few hours too long.
 
