@@ -35,7 +35,7 @@ Finally, crash reporting in MetricKit requires iOS 14. Depending on how fast iOS
 Apple could address some of those limitations in future versions of MetricKit, but I highly doubt that anybody will be ditching current in-process crash reporters for MetricKit any time soon.
 
 ### Is Apple planning on limiting the use of in-process crash reporting?
-It’s not entirely implausible that MetricKit could be part of a plan to limit the use of methods currently used by in-process crash reporters and have tighter control over the crash reporting lifecycle and data. It’s very hard to speculate on this, but I doubt that this what Apple is planning to do.
+It’s not entirely implausible that MetricKit could be part of a plan to limit the use of methods currently used by in-process crash reporters and have tighter control over the crash reporting lifecycle and data. It’s very hard to speculate on this, but I doubt that this is what Apple is planning to do.
 
 If this were to happen, it would give Apple the ability to enforce the privacy of user’s data at an API level. While the idea, in theory, sounds appealing, the amount of private data in a crash report is very little, if not non at all.
 
