@@ -26,20 +26,20 @@ Apple doesn’t specifically say this in the documentation or any of the WWDC vi
 ### Is this the end of in-process crash reporting?
 I highly doubt it. MetricKit is very promising, but it also currently has a few limitations that I think are going to curb its adoption.
 
-MetricKit will only collect data for users that have opted-in to share diagnostics & usage data with developers. This is great for privacy, yet it also means that you will not be getting the full picture of how a certain crash impacts your users since you only have a (supposedly small) percentage of the diagnostics reports. More obscure crashes affecting a small percentage of your user base may go completely unnoticed.
+MetricKit will only collect data for users that have opted-in to share diagnostics & usage data with developers. This is great for privacy, yet it also means that you will not be getting the full picture of how a certain crash impacts your users since you only have a (supposedly small) percentage of the diagnostics reports. More obscure crashes affecting a small percentage of your userbase may go completely unnoticed.
 
 Another limitation with MetricKit is that you can request diagnostics data about the previous 24 hours only once per day. This means that [sudden spikes in crashes](https://www.theverge.com/2020/5/7/21250689/facebook-sdk-bug-ios-app-crash-apple-spotify-venmo-tiktok-tinder) may go unnoticed for a few hours too long.
 
-Finally, crash reporting in MetricKit requires iOS 14. Depending on how fast iOS 14 gets adopted by users, this limitation alone could mean that we will have to wait at least 2 to 3 more years before MetricKit can see meaningful levels of adoption.
+Finally, crash reporting in MetricKit requires iOS 14. Depending on how fast iOS 14 gets adopted by users, this limitation alone could mean that it could take 2 to 3 years before MetricKit sees meaningful levels of adoption.
 
 Apple could address some of those limitations in future versions of MetricKit, but I highly doubt that anybody will be ditching current in-process crash reporters for MetricKit any time soon.
 
 ### Is Apple planning on limiting the use of in-process crash reporting?
 It’s not entirely implausible that MetricKit could be part of a plan to limit the use of methods currently used by in-process crash reporters and have tighter control over the crash reporting lifecycle and data. It’s very hard to speculate on this, but I doubt that this is what Apple is planning to do.
 
-If this were to happen, it would give Apple the ability to enforce the privacy of user’s data at an API level. While the idea, in theory, sounds appealing, the amount of private data in a crash report is very little, if not non at all.
+If this were to happen, it would give Apple the ability to enforce the privacy of user’s data at an API level. While the idea, in theory, sounds appealing, the amount of private data in a crash report is very little, if not none at all.
 
-If Apple was to take such a heavy-handed approach, I believe it would start with SDKs and services that collect a lot more sensitive data, like analytics SDKs, where this would have a much higher impact.
+If Apple was to take such a heavy-handed approach, I believe it would start tackling SDKs and services that collect a lot more sensitive data, like analytics SDKs, where this would have a much higher impact.
 
 ### Conclusion
 It’s great to see Apple offering a 1st-party framework for reporting crashes and other diagnostic information that’s designed to be usable directly by an app or by a 3rd-party service.
@@ -48,4 +48,4 @@ I think there’s a lot of work that needs to be done for MetricKit crash report
 
 I’m excited to see what other features Apple adds to MetricKit next year, and if they are accompanied by any policy/App Store review changes designed to push developers to use MetricKit instead of alternative solutions.
 
-**Disclaimer: I work for Instabug and we currently offer a crash reporting SDK. My opinions might be biased due to that.**
+**Disclaimer: I work for Instabug and we currently offer a crash reporting SDK, so my opinions might be a bit biased.**
