@@ -1,4 +1,7 @@
-## Exploring iOS 14: Crash Reporting using MetricKit
+# Exploring iOS 14: Crash Reporting using MetricKit
+# What MetricKit Means for In-process Crash Reporting
+# Is MetricKit in iOS 14 the End of Third-Party Crash Reporting?
+
 MetricKit was introduced last year with iOS 13, offering a relatively simple API to access a wide range of on-device power and performance metrics for your app. With the introduction of iOS 14, MetricKit added 3 new trackable metrics: CPU instructions, animation hitches, and exit reasons.
 
 Out of those 3 new metrics, the exit reasons metric is the most interesting to me. Exit reasons track the various ways an app could be terminated while running in either the foreground or the background. Those include things like terminations due to memory pressure, watchdog terminations, as well as crashes.
@@ -9,8 +12,8 @@ This blog post is an attempt to answer some of the questions that I think are go
 
 Before getting started, I recommend reading [this blog post](https://www.chimehq.com/blog/metrickit-crash-reporting) by [Matt Massicotte](https://twitter.com/mattie) first. It talks about a lot of the implementation details of crash reporting in MetricKit. Here are some of the key points Matt made that are relevant to this blog post.
 
-* In-process crash reporting, which is how all current commercial and open-source crash reporters are implemented, is messy and error-prone.
-* MetricKit offers raw diagnostics data. It’s up to you to do any analysis on that data.
+* In-process crash reporting, which is how all current commercial and open-source crash reporters are implemented, is very complex. While most crash reporters are stable and work reliably, the techniques they use the achieve that are messy.
+* MetricKit offers raw diagnostics data via `MXDiagnosticPayload` and `MXCrashDiagnostic`. It’s up to you to do any analysis on that data.
 * MetricKit crash reporting is designed to support multiple consumers of the diagnostics data, unlike methods currently used by in-process crash reporting which can leave multiple crash reporters competing for the data.
 * Stack traces collected by MetricKit are unsymbolicated and will require further processing before being human-readable.
 
