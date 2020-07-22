@@ -12,7 +12,7 @@ This blog post is an attempt to answer some of the questions that I think are go
 
 Before getting started, I recommend reading [this blog post](https://www.chimehq.com/blog/metrickit-crash-reporting) by [Matt Massicotte](https://twitter.com/mattie) first. It talks about a lot of the implementation details of crash reporting in MetricKit. Here are some of the key points Matt made that are relevant to this blog post.
 
-* In-process crash reporting, which is how all current commercial and open-source crash reporters are implemented, is very complex. While most crash reporters are stable and work reliably, the techniques they use the achieve that are messy.
+* In-process crash reporting, which is how all current commercial and open-source crash reporters are implemented, is very complex. While most crash reporters are stable and work reliably, the techniques they use to achieve that are messy.
 * MetricKit offers raw diagnostics data via `MXDiagnosticPayload` and `MXCrashDiagnostic`. It’s up to you to do any analysis on that data.
 * MetricKit crash reporting is designed to support multiple consumers of the diagnostics data, unlike methods currently used by in-process crash reporting which can leave multiple crash reporters competing for the data.
 * Stack traces collected by MetricKit are unsymbolicated and will require further processing before being human-readable.
