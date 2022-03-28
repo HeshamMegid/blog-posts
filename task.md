@@ -2,10 +2,7 @@
 
 ## Intro
 
-The attached starter project provides a very basic HTTP networking framework. To complete this task, you have to build the following extra functionality on top of the starter project:
-
-1. Make HTTP requests when any of the framework's public APIs are called.
-2. Store all HTTP requests made by the framework.
+The attached starter project provides a very basic HTTP networking framework that exposes 4 public APIs, letting users make different types of HTTP requests. To complete this task, you have to build some extra functionality on top of the starter project to store all requests that are made by the framework.
 
 ## Requirements
 
